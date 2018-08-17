@@ -1,0 +1,32 @@
+{
+  "description": "DSFS Graphdriver Plugin",
+  "documentation": "dsfs",
+  "entrypoint": ["./dsfs_plugin"],
+  "interface": {
+    "types": ["docker.graphdriver/1.0"],
+    "socket": "plugin.sock"
+  },
+  "mounts": [
+  {
+	"destination": "/plugin",
+	"source": "/plugin",
+	"type": "bind",
+	"options": ["rbind", "rw"]
+  }
+  ],
+  "PropogatedMount": "/plugin",
+  "network": {
+    "type": "host"
+  },
+  "Linux": {
+    "capabilities": ["CAP_SYS_ADMIN"]
+  },
+  "env": [
+    {
+      "name": "DEBUG",
+      "description": "If set, prints debug messages",
+      "value": "1"
+    }
+  ]
+}
+
